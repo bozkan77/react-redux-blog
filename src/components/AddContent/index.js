@@ -12,6 +12,7 @@ const INIT_CONTENT = {
 const AddContent = (props) => {
 
   const [newContent, setNewContent] = useState(INIT_CONTENT);
+  const [error, setError] = useState("")
 
   const onInputChange = (e) => {
     setNewContent({...newContent, [e.target.name]: e.target.value});
@@ -19,12 +20,16 @@ const AddContent = (props) => {
 
   const onFormSubmit = (e) => {
     e.preventDefault();
+    setError("")
     axios.post(`https://react-yazi-yorum.herokuapp.com/posts`, newContent)
       .then((res)=> {
         props.history.push('/')
         setNewContent(INIT_CONTENT)
       }).catch((err)=> {
-        console.log(err)
+        setError("Tüm alanların doldurulması zorunludur!")
+        setTimeout(() => {
+          setError("")
+        }, 3000);
       })
   }
 
@@ -36,6 +41,7 @@ const AddContent = (props) => {
         title={newContent.title}
         content={newContent.content}
         onFormSubmit={onFormSubmit}
+        error={error}
       />
     </>
   );
