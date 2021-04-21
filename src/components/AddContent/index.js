@@ -1,8 +1,8 @@
 import React, { useState } from "react";
-//thir party library
-import axios from "axios";
+
 // custom components
 import ContentForm from "../ContentForm";
+import {api} from "../../api";
 
 const INIT_CONTENT = {
   title: "",
@@ -21,7 +21,7 @@ const AddContent = (props) => {
   const onFormSubmit = (e) => {
     e.preventDefault();
     setError("")
-    axios.post(`https://react-yazi-yorum.herokuapp.com/posts`, newContent)
+    api().post(`/posts`, newContent)
       .then((res)=> {
         props.history.push('/')
         setNewContent(INIT_CONTENT)

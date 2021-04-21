@@ -4,7 +4,8 @@ import axios from "axios";
 import moment from "moment";
 // custom components
 import AddComment from "../AddComment";
-import CommentList from "../CommentList"
+import CommentList from "../CommentList";
+import { api } from "../../api";
 
 const INIT_COMMENT = {
   display_name: "",
@@ -23,12 +24,7 @@ const PostDetail = (props) => {
 
   useEffect(() => {
     axios
-      .all([
-        axios.get(`https://react-yazi-yorum.herokuapp.com/posts/${id}`),
-        axios.get(
-          `https://react-yazi-yorum.herokuapp.com/posts/${id}/comments`
-        ),
-      ])
+      .all([api().get(`/posts/${id}`), api().get(`/posts/${id}/comments`)])
       .then((resp) => {
         setArticleDetail(resp[0].data);
         setCommentList(resp[1].data);
@@ -36,15 +32,12 @@ const PostDetail = (props) => {
       .catch((err) => {
         console.log(err);
       });
-  }, [id]);  
+  }, [id]);
 
   const handleCommentSubmit = (e) => {
     e.preventDefault();
-    axios
-      .post(
-        `https://react-yazi-yorum.herokuapp.com/posts/${id}/comments`,
-        comment
-      )
+    api()
+      .post(`/posts/${id}/comments`, comment)
       .then((res) => {
         setCommentList([...commentList, res.data]);
       })
@@ -54,16 +47,12 @@ const PostDetail = (props) => {
     setComment(INIT_COMMENT);
   };
 
- 
-
   return (
     <div className="">
       <h2>{articleDetail.title}</h2>
       <p>{articleDetail.content}</p>
       <p>{moment(articleDetail.created_at).format("Do MMMM YYYY")}</p>
-      <CommentList 
-        commentList={commentList}
-      />
+      <CommentList commentList={commentList} />
       <AddComment
         handleCommentSubmit={handleCommentSubmit}
         handleOnChange={handleOnChange}

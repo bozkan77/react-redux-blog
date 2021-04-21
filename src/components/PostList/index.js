@@ -2,15 +2,17 @@ import React, { useEffect, useState } from "react";
 import {Link} from "react-router-dom";
 import "./postlist.css";
 // third party lib
-import axios from "axios";
 import moment from "moment";
+//custom components
+import {api} from "../../api";
+
 
 const PostList = () => {
   const [articleList, setArticleList] = useState([]);
 
   useEffect(() => {
-    axios
-      .get("https://react-yazi-yorum.herokuapp.com/posts")
+    api()
+      .get("/posts")
       .then((res) => setArticleList(res.data));
   }, []);
 
