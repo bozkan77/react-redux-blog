@@ -5,7 +5,8 @@ import Header from "./components/Header";
 
 // custom components
 import PostList from "./components/PostList";
-import PostDetail from "./components/PostDetail"
+import PostDetail from "./components/PostDetail";
+import AddContent from "./components/AddContent";
 
 
 
@@ -20,7 +21,7 @@ function App() {
       <section className="ui raised very padded text container segment">
         <Route path="/" exact component={PostList} />
         <Route path="/posts/:id"  component={PostDetail} />
-        {/*<Route path="/add-content"  component={Content} /> */}
+        <Route path="/add-content"  component={AddContent} />
       </section>
     </div>
     </Router>
