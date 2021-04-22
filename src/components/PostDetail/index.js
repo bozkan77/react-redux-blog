@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 // third party lib
-import { Link } from "react-router-dom";
+import { Link, useHistory, useParams } from "react-router-dom";
 import axios from "axios";
 import moment from "moment";
 // custom components
@@ -14,13 +14,13 @@ const INIT_COMMENT = {
   body: "",
 };
 
-const PostDetail = (props) => {
-  const { id } = props.match.params;
+const PostDetail = () => {
+  const { id } = useParams();
+  const history = useHistory()
   const [articleDetail, setArticleDetail] = useState({});
   const [commentList, setCommentList] = useState([]);
   const [comment, setComment] = useState(INIT_COMMENT);
   const [deleteErr, setDeleteErr] = useState("")
-
 
   const handleOnChange = (e) => {
     setComment({ ...comment, [e.target.name]: e.target.value });
@@ -55,7 +55,7 @@ const PostDetail = (props) => {
      api()
       .delete(`/posts/${id}`)
         .then((res)=>{
-          props.history.push('/')
+          history.push('/')
         }).catch((err) => {
             console.log(err)
         })

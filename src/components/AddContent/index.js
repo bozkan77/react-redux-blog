@@ -3,14 +3,16 @@ import React, { useEffect, useState } from "react";
 // custom components
 import ContentForm from "../ContentForm";
 import { api } from "../../api";
+import { useHistory, useParams } from "react-router";
 
 const INIT_CONTENT = {
   title: "",
   content: "",
 };
 
-const AddContent = (props) => {
-  const { id } = props.match.params;
+const AddContent = () => {
+  const { id } = useParams();
+  const history = useHistory();
   const [newContent, setNewContent] = useState(INIT_CONTENT);
   const [error, setError] = useState("");
   const [editable, setEditable] = useState({});
@@ -27,7 +29,7 @@ const AddContent = (props) => {
       api()
         .put(`/posts/${id}`, newContent)
         .then((res) => {
-          props.history.push(`/posts/${id}`);
+          history.push(`/posts/${id}`);
         })
         .catch((err) => {
           setError("Tüm alanların doldurulması zorunludur!");
@@ -39,7 +41,7 @@ const AddContent = (props) => {
       api()
         .post(`/posts`, newContent)
         .then((res) => {
-          props.history.push("/");
+          history.push("/");
           setNewContent(INIT_CONTENT);
         })
         .catch((err) => {
