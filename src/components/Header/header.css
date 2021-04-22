@@ -8,3 +8,19 @@
   font-size: calc(10px + 2vmin);
   color: white;
 }
+
+.navi{
+  display: flex;
+  font-size: 1rem;
+  list-style-type: none;
+}
+.navi li a{
+  color: white;
+  padding: 10px;
+  transition: ease .4;
+}
+
+.navi li a:hover{
+  color: white;
+  padding: 10px
+}
