@@ -1,11 +1,13 @@
 import React, { useEffect, useState } from "react";
 // third party lib
+import { Link } from "react-router-dom";
 import axios from "axios";
 import moment from "moment";
 // custom components
 import AddComment from "../AddComment";
 import CommentList from "../CommentList";
 import { api } from "../../api";
+
 
 const INIT_COMMENT = {
   display_name: "",
@@ -50,8 +52,13 @@ const PostDetail = (props) => {
   return (
     <div className="">
       <h2>{articleDetail.title}</h2>
-      <p>{articleDetail.content}</p>
       <p>{moment(articleDetail.created_at).format("Do MMMM YYYY")}</p>
+      <p>{articleDetail.content}</p>
+      <div className="ui buttons">
+      <Link className="ui blue button" to={`/posts/${articleDetail.id}/edit`}>Düzenle</Link>
+      <button className="ui red button">Sil</button>
+    </div>
+     
       <CommentList commentList={commentList} />
       <AddComment
         handleCommentSubmit={handleCommentSubmit}

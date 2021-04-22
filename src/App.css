@@ -4,3 +4,7 @@
 .m-t10{
   margin-top: 10px !important;
 }
+.seperator{
+  border-top: 1px solid #ccc;
+  padding-top: 15px;
+}

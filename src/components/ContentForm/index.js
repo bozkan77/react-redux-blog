@@ -6,7 +6,10 @@ const ContentForm = ({
   onInputChange,
   onFormSubmit,
   error,
+  editable
 }) => {
+
+
   return (
     <>
       {error && (
@@ -21,7 +24,7 @@ const ContentForm = ({
           <input
             type="text"
             name="title"
-            value={title}
+            value={title || editable.title}
             onChange={onInputChange}
           />
         </div>
@@ -29,12 +32,12 @@ const ContentForm = ({
           <label>İçerik</label>
           <textarea
             name="content"
-            value={content}
+            value={content || editable.content}
             onChange={onInputChange}
           ></textarea>
         </div>
         <button className="ui olive button" onClick={onFormSubmit}>
-          İçeriği Gönder
+          İçeriği Güncelle
         </button>
         <button className="ui button">İptal Et</button>
       </div>

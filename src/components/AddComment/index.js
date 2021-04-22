@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React  from "react";
 
 
 
@@ -6,7 +6,7 @@ const AddComment = ({handleCommentSubmit, comment, handleOnChange}) => {
 
   return (
     <>
-    <h4>Yorumunuz</h4>
+    <h4 className="seperator">Yorum Ekle</h4>
       <form className="ui form" onSubmit={handleCommentSubmit}
         >
         <div className="ui small icon input">

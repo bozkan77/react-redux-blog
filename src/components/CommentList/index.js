@@ -14,7 +14,7 @@ const CommentList = ({commentList}) => {
 
   return(
 <div className="ui relaxed list">
-        <h3>Yorumlar</h3>
+        <h3 className="seperator">Yorumlar</h3>
         {comments}
       </div>
   )

@@ -20,8 +20,9 @@ function App() {
       
       <section className="ui raised very padded text container segment">
         <Route path="/" exact component={PostList} />
-        <Route path="/posts/:id"  component={PostDetail} />
+        <Route path="/posts/:id" exact component={PostDetail} />
         <Route path="/add-content"  component={AddContent} />
+        <Route path="/posts/:id/edit"  component={AddContent} />
       </section>
     </div>
     </Router>
