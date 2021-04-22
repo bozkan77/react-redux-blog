@@ -1,22 +1,27 @@
 import React, { useEffect, useState } from "react";
-import {Link} from "react-router-dom";
+// css
 import "./postlist.css";
 // third party lib
+import { useSelector, useDispatch } from "react-redux";
+import {Link} from "react-router-dom";
 import moment from "moment";
 //custom components
-import {api} from "../../api";
+
+// actions
+import {getPostList} from "../../redux/actions/getPostList"
+
 
 
 const PostList = () => {
-  const [articleList, setArticleList] = useState([]);
+
+  const postList = useSelector(state => state.postList);
+  const dispatch = useDispatch();
 
   useEffect(() => {
-    api()
-      .get("/posts")
-      .then((res) => setArticleList(res.data));
+    dispatch(getPostList())
   }, []);
 
-  let articles = articleList.map((item, i) => (
+  let articles = postList.map((item, i) => (
     <div className="item" key={i}>
       <i className="large github middle aligned icon"></i>
       <div className="content">
