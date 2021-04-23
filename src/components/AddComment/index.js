@@ -1,8 +1,11 @@
 import React  from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { addComment } from "../../redux/actions";
 
 
 
-const AddComment = ({handleCommentSubmit, comment, handleOnChange}) => {
+const AddComment = ({ comment, handleOnChange, handleCommentSubmit, id}) => {
+
 
   return (
     <>

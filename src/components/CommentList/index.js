@@ -2,6 +2,7 @@ import React from "react";
 
 const CommentList = ({commentList}) => {
 
+
   let comments = commentList?.map((com, i) => (
     <div className="item" key={i}>
       <img className="ui avatar image" src="/images/avatar/small/daniel.jpg" />

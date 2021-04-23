@@ -25,7 +25,7 @@ const AddContent = () => {
     e.preventDefault();
     setError("");
 
-    if (editable) {
+    if (id) {
       api()
         .put(`/posts/${id}`, newContent)
         .then((res) => {

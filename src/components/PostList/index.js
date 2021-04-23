@@ -5,10 +5,9 @@ import "./postlist.css";
 import { useSelector, useDispatch } from "react-redux";
 import {Link} from "react-router-dom";
 import moment from "moment";
-//custom components
 
 // actions
-import {getPostList} from "../../redux/actions/getPostList"
+import {getPostList} from "../../redux/actions"
 
 
 

@@ -1,4 +1,6 @@
 import React from "react";
+import { useHistory, useParams } from "react-router-dom";
+
 
 const ContentForm = ({
   title,
@@ -9,7 +11,12 @@ const ContentForm = ({
   editable
 }) => {
 
+ const history = useHistory();
+ const {id} = useParams();
 
+const redirectPage = () => {
+  history.push(`/posts/${id}`)
+}
   return (
     <>
       {error && (
@@ -37,9 +44,9 @@ const ContentForm = ({
           ></textarea>
         </div>
         <button className="ui olive button" onClick={onFormSubmit}>
-          İçeriği Güncelle
+          {id ? 'İçeriği Güncelle' : 'İçerik Ekle'}
         </button>
-        <button className="ui button">İptal Et</button>
+        <button className="ui button" onClick={redirectPage}>İptal Et</button>
       </div>
     </>
   );
